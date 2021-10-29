@@ -1,0 +1,16 @@
+/*
+ * input_processing.h
+ *
+ *  Created on: Oct 18, 2021
+ *      Author: Dell
+ */
+
+#ifndef INC_BUTTON_INPUT_PROCESSING_H_
+#define INC_BUTTON_INPUT_PROCESSING_H_
+
+void fsm_for_input1_processing(void);
+void fsm_for_input2_processing(void);
+void fsm_for_input3_processing(void);
+void fsm_for_input4_processing(void);
+
+#endif /* INC_BUTTON_INPUT_PROCESSING_H_ */

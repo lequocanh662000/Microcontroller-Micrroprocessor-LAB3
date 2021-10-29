@@ -1,0 +1,126 @@
+#include <button/input_processing.h>
+#include <button/input_reading.h>
+#include "main.h"
+
+enum ButtonState {BUTTON_RELEASED, BUTTON_PRESSED, BUTTON_PRESSES_MORE_THAN_1_SEC};
+enum ButtonState buttonState = BUTTON_RELEASED;
+
+static uint8_t button1, button2, button3, button4;
+
+void fsm_for_input1_processing(void){
+	switch(buttonState){
+//////////////////// RELEASED ////////////////////////////
+		case BUTTON_RELEASED:
+			if(is_button_pressed(0)){
+				buttonState = BUTTON_PRESSED;
+			}
+			break;
+/////////////////   PRESSED  /////////////////////////////
+		case BUTTON_PRESSED:
+			update_mode_led(0);
+
+			if(!is_button_pressed(0)){
+				buttonState = BUTTON_RELEASED;
+			}else{
+				if(is_button_pressed_1s(0)){
+					buttonState = BUTTON_PRESSES_MORE_THAN_1_SEC;
+				}
+			}
+			break;
+/////////////////////   MORE THAN 1 SEC //////////////////
+		case BUTTON_PRESSES_MORE_THAN_1_SEC:
+			if(!is_button_pressed(0)){
+				buttonState = BUTTON_RELEASED;
+			}else{
+				// to do
+			}
+			break;
+	}
+}
+
+void fsm_for_input2_processing(void){
+	switch(buttonState){
+//////////////////// RELEASED ////////////////////////////
+		case BUTTON_RELEASED:
+			if(is_button_pressed(1)){
+				buttonState = BUTTON_PRESSED;
+			}
+			break;
+/////////////////   PRESSED  /////////////////////////////
+		case BUTTON_PRESSED:
+			if(!is_button_pressed(1)){
+				buttonState = BUTTON_RELEASED;
+			}else{
+				if(is_button_pressed_1s(1)){
+					buttonState = BUTTON_PRESSES_MORE_THAN_1_SEC;
+				}
+			}
+			break;
+/////////////////////   MORE THAN 1 SEC //////////////////
+		case BUTTON_PRESSES_MORE_THAN_1_SEC:
+			if(!is_button_pressed(1)){
+				buttonState = BUTTON_RELEASED;
+			}else{
+				// to do
+			}
+			break;
+	}
+}
+
+void fsm_for_input3_processing(void){
+	switch(buttonState){
+//////////////////// RELEASED ////////////////////////////
+		case BUTTON_RELEASED:
+			if(is_button_pressed(2)){
+				buttonState = BUTTON_PRESSED;
+			}
+			break;
+/////////////////   PRESSED  /////////////////////////////
+		case BUTTON_PRESSED:
+			if(!is_button_pressed(2)){
+				buttonState = BUTTON_RELEASED;
+			}else{
+				if(is_button_pressed_1s(2)){
+					buttonState = BUTTON_PRESSES_MORE_THAN_1_SEC;
+				}
+			}
+			break;
+/////////////////////   MORE THAN 1 SEC //////////////////
+		case BUTTON_PRESSES_MORE_THAN_1_SEC:
+			if(!is_button_pressed(2)){
+				buttonState = BUTTON_RELEASED;
+			}else{
+				// to do
+			}
+			break;
+	}
+}
+
+void fsm_for_input4_processing(void){
+	switch(buttonState){
+//////////////////// RELEASED ////////////////////////////
+		case BUTTON_RELEASED:
+			if(is_button_pressed(3)){
+				buttonState = BUTTON_PRESSED;
+			}
+			break;
+/////////////////   PRESSED  /////////////////////////////
+		case BUTTON_PRESSED:
+			if(!is_button_pressed(3)){
+				buttonState = BUTTON_RELEASED;
+			}else{
+				if(is_button_pressed_1s(0)){
+					buttonState = BUTTON_PRESSES_MORE_THAN_1_SEC;
+				}
+			}
+			break;
+/////////////////////   MORE THAN 1 SEC //////////////////
+		case BUTTON_PRESSES_MORE_THAN_1_SEC:
+			if(!is_button_pressed(3)){
+				buttonState = BUTTON_RELEASED;
+			}else{
+				// to do
+			}
+			break;
+	}
+}

@@ -1,0 +1,17 @@
+#include <button/input_processing.h>
+#include <button/input_reading.h>
+#include <timer/timer.h>
+#include <leds_display/led_7seg_display.h>
+#include <leds_display/Traffic_Light.h>
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	static uint8_t counter;
+	if(htim->Instance == TIM2){
+		if(++counter % 50 == 0)Traffic_Light_Update();
+		timer0_run();
+
+		//reading_button();
+	}
+
+}
+

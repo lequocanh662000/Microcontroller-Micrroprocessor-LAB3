@@ -1,0 +1,4 @@
+input_processing.c:13:6:fsm_for_input1_processing	8	static
+input_processing.c:42:6:fsm_for_input2_processing	8	static
+input_processing.c:71:6:fsm_for_input3_processing	8	static
+input_processing.c:100:6:fsm_for_input4_processing	8	static

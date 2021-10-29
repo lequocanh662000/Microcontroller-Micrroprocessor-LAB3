@@ -1,0 +1,123 @@
+#include <button/input_processing.h>
+#include <button/input_reading.h>
+#include <leds_display/Traffic_Light.h>
+#include <leds_display/led_7seg_display.h>
+#include "main.h"
+
+#define NUMBER_OF_SEVEN_SEGMENT_LED  	2
+#define NUMBER_OF_DECIMAL_DIGIT			10
+
+//common Anode 0:off  1:one
+static uint8_t sevenSegmentLEDConversion[10] = {0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x6f};
+
+//common Cathode 0:one  1:off
+//uint8_t sevenSegmentLEDConversion[10] = {};
+
+static uint8_t sevenSegmentLEDBuffer[NUMBER_OF_SEVEN_SEGMENT_LED]; // buffer to store value of each led
+
+// FORMAT PIN, PORT
+static uint16_t sevenSegmentDataPin[8] = {
+		SEVEN_SEGMENT_1_A, SEVEN_SEGMENT_1_B,
+		SEVEN_SEGMENT_1_C, SEVEN_SEGMENT_1_D,
+		SEVEN_SEGMENT_1_E, SEVEN_SEGMENT_1_F,
+		SEVEN_SEGMENT_1_G, SEVEN_SEGMENT_1_H
+};
+
+static GPIO_TypeDef * sevenSegmentDataPort[8] = {
+		SEVEN_SEGMENT_1_A_PORT, SEVEN_SEGMENT_1_B_PORT,
+		SEVEN_SEGMENT_1_C_PORT, SEVEN_SEGMENT_1_D_PORT,
+		SEVEN_SEGMENT_1_E_PORT, SEVEN_SEGMENT_1_F_PORT,
+		SEVEN_SEGMENT_1_G_PORT, SEVEN_SEGMENT_1_H_PORT
+};
+
+static uint16_t sevenSegmentControlPin[NUMBER_OF_SEVEN_SEGMENT_LED] = {
+		ENABLE_7SEG_1, ENABLE_7SEG_2
+//		,
+//		ENABLE_7SEG_3, ENABLE_7SEG_4
+};
+
+static GPIO_TypeDef * sevenSegmentControlPort[NUMBER_OF_SEVEN_SEGMENT_LED] = {
+		ENABLE_7SEG_1_PORT, ENABLE_7SEG_2_PORT
+//		,
+//		ENABLE_7SEG_3_PORT, ENABLE_7SEG_4_PORT
+};
+
+// extra led for mode display
+static uint16_t modeLedDataPin[7] = {
+		EDGE_A, EDGE_B,
+		EDGE_C, EDGE_D,
+		EDGE_E, EDGE_F,
+		EDGE_G
+};
+
+static GPIO_TypeDef * modeLedDataPort[7] = {
+		EDGE_A_PORT, EDGE_B_PORT,
+		EDGE_C_PORT, EDGE_D_PORT,
+		EDGE_E_PORT, EDGE_F_PORT,
+		EDGE_G_PORT
+};
+////////////////////////// FUNCTION CONFIGURATION ///////////////////////////////
+
+void update_seven_segment_led_buffer(uint8_t index, uint8_t value){
+	if(index >= NUMBER_OF_SEVEN_SEGMENT_LED) return;
+	if(value > 10) return ;
+	sevenSegmentLEDBuffer[index] = value;
+	return;
+}
+
+void seven_segment_data_output(uint8_t value){
+	uint8_t index;
+	for(index = 0; index < 7; index ++){
+			if((value>>index) & 0x01){
+				HAL_GPIO_WritePin(sevenSegmentDataPort[index], sevenSegmentDataPin[index], RESET);
+			} else {
+				HAL_GPIO_WritePin(sevenSegmentDataPort[index], sevenSegmentDataPin[index],	SET);
+			}
+		}
+}
+
+void clear_previous_seven_segment_led(uint8_t index){
+	if(index >= NUMBER_OF_SEVEN_SEGMENT_LED) return;
+	HAL_GPIO_WritePin(sevenSegmentControlPort[index], sevenSegmentControlPin[index], SET);
+}
+
+void set_current_seven_segment_led(uint8_t index){
+	if(index >= NUMBER_OF_SEVEN_SEGMENT_LED) return;
+	HAL_GPIO_WritePin(sevenSegmentControlPort[index], sevenSegmentControlPin[index], RESET);
+}
+
+void seven_segment_led_driver(void){
+	static uint8_t led_index = 0;
+	uint8_t tempData;
+	// clear previous led data
+	clear_previous_seven_segment_led(led_index);
+	// current led data setting
+	led_index = (led_index + 1) % NUMBER_OF_SEVEN_SEGMENT_LED;
+	tempData = sevenSegmentLEDConversion[sevenSegmentLEDBuffer[led_index]];
+	seven_segment_data_output(tempData);
+	set_current_seven_segment_led(led_index);
+}
+
+void update_mode_led(uint8_t button_index){
+	uint8_t index;
+	static uint8_t mode[3];
+	uint8_t convertedmode = sevenSegmentLEDConversion[mode[button_index]];
+
+	if(button_index == 0)mode[0] = (mode[0] + 1) % 4;
+	if(button_index == 1)mode[1] = (mode[1] + 1) % 100;
+	if(button_index == 2){
+		mode[1] -= 1;
+		if(mode[1] < 0)mode[1] = 0;
+	}
+	if(button_index == 3){
+		return;
+	}
+
+	for(index = 0; index < 7; index ++){
+		if((convertedmode >> index) & 0x01){
+			HAL_GPIO_WritePin(modeLedDataPort[index], modeLedDataPin[index], RESET);
+		}else{
+			HAL_GPIO_WritePin(modeLedDataPort[index], modeLedDataPin[index], SET);
+		}
+	}
+}

@@ -1,0 +1,4 @@
+Traffic_Light.c:17:6:update_buffer_traffic_7seg_leds	16	static
+Traffic_Light.c:22:6:Traffic_Light_Init	16	static
+Traffic_Light.c:26:6:Traffic_Light_Update	8	static
+Traffic_Light.c:95:6:Traffic_set_mode	16	static

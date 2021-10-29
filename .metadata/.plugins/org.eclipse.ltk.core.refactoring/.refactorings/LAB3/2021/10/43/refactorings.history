@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move &apos;input_processing.h, input_reading.h&apos; to &apos;button&apos;" description="Move 2 resources to &apos;button&apos;" destination="Core/Inc/button" element1="Core/Src/button/input_processing.h" element2="Core/Src/button/input_reading.h" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="2" stamp="1634570796138" updateReferences="true"/>
+</session>

@@ -1,0 +1,11 @@
+led_7seg_display.c:70:6:update_seven_segment_led_buffer	16	static
+led_7seg_display.c:77:6:seven_segment_data_output	24	static
+led_7seg_display.c:88:6:clear_previous_seven_segment_led	16	static
+led_7seg_display.c:93:6:set_current_seven_segment_led	16	static
+led_7seg_display.c:98:6:seven_segment_led_driver	16	static
+led_7seg_display.c:111:6:update_mode_led	16	static
+led_7seg_display.c:162:6:update_mode_seven_segment_led_buffer	16	static
+led_7seg_display.c:169:6:mode_seven_segment_data_output	24	static
+led_7seg_display.c:180:6:clear_previous_mode_seven_segment_led	16	static
+led_7seg_display.c:185:6:set_current_mode_seven_segment_led	16	static
+led_7seg_display.c:190:6:mode_seven_segment_led_driver	16	static
