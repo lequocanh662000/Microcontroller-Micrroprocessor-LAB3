@@ -22,6 +22,7 @@ OBJCOPY_BIN :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 Core/Src/button \
+Core/Src/fault_control \
 Core/Src/leds_display \
 Core/Src \
 Core/Src/timer \

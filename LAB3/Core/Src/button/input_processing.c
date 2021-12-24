@@ -9,7 +9,7 @@ enum ButtonState buttonState2 = BUTTON_RELEASED;
 enum ButtonState buttonState3 = BUTTON_RELEASED;
 enum ButtonState buttonState4 = BUTTON_RELEASED;
 
-
+// BUTTON 1
 void fsm_for_input1_processing(void){
 	switch(buttonState1){
 //////////////////// RELEASED ////////////////////////////
@@ -38,7 +38,7 @@ void fsm_for_input1_processing(void){
 			break;
 	}
 }
-
+// BUTTON 2
 void fsm_for_input2_processing(void){
 	switch(buttonState2){
 //////////////////// RELEASED ////////////////////////////
@@ -67,7 +67,7 @@ void fsm_for_input2_processing(void){
 			break;
 	}
 }
-
+// BUTTON 3
 void fsm_for_input3_processing(void){
 	switch(buttonState3){
 //////////////////// RELEASED ////////////////////////////
@@ -96,7 +96,7 @@ void fsm_for_input3_processing(void){
 			break;
 	}
 }
-
+// BUTTON 4
 void fsm_for_input4_processing(void){
 	switch(buttonState4){
 //////////////////// RELEASED ////////////////////////////

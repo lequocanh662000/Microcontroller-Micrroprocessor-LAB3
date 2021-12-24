@@ -25,8 +25,9 @@ Core/Src/leds_display/led_7seg_display.o: \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
- ../Core/Inc/leds_display/Traffic_Light.h \
- ../Core/Inc/leds_display/led_7seg_display.h
+ ../Core/Inc/leds_display/Functions_Light.h \
+ ../Core/Inc/leds_display/led_7seg_display.h \
+ ../Core/Inc/fault_control/fault_control.h
 
 ../Core/Inc/button/input_processing.h:
 
@@ -82,6 +83,8 @@ Core/Src/leds_display/led_7seg_display.o: \
 
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 
-../Core/Inc/leds_display/Traffic_Light.h:
+../Core/Inc/leds_display/Functions_Light.h:
 
 ../Core/Inc/leds_display/led_7seg_display.h:
+
+../Core/Inc/fault_control/fault_control.h:

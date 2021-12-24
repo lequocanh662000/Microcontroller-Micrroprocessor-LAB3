@@ -5,15 +5,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Core/Src/leds_display/Traffic_Light.c \
+../Core/Src/leds_display/Functions_Light.c \
 ../Core/Src/leds_display/led_7seg_display.c 
 
 OBJS += \
-./Core/Src/leds_display/Traffic_Light.o \
+./Core/Src/leds_display/Functions_Light.o \
 ./Core/Src/leds_display/led_7seg_display.o 
 
 C_DEPS += \
-./Core/Src/leds_display/Traffic_Light.d \
+./Core/Src/leds_display/Functions_Light.d \
 ./Core/Src/leds_display/led_7seg_display.d 
 
 

@@ -24,9 +24,10 @@
 /* USER CODE BEGIN Includes */
 #include <button/input_processing.h>
 #include <button/input_reading.h>
+#include <leds_display/Functions_Light.h>
 #include <timer/timer.h>
 #include <leds_display/led_7seg_display.h>
-#include <leds_display/Traffic_Light.h>
+#include <fault_control/fault_control.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -105,7 +106,8 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
-  Traffic_Light_Init(RED);
+  //Traffic_Light_Init(RED);
+  Washing_Light_Init(READY);
   setTimer0(50);
   /* USER CODE END 2 */
 
@@ -113,16 +115,17 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	    /* USER CODE END WHILE */
-		  if(timer0_flag == 1){
-			  Traffic_Light_Update();
-			  setTimer0(50);
-		  }
-		  fsm_for_input1_processing();
-		  fsm_for_input2_processing();
-		  fsm_for_input3_processing();
-		  fsm_for_input4_processing();
-	    /* USER CODE BEGIN 3 */
+    /* USER CODE END WHILE */
+	  if(timer0_flag == 1){
+		  Washing_Update();
+		  Washing_Light_Update();
+		  setTimer0(50);
+	  }
+	  fsm_for_input1_processing(); // CHOOSE MODE
+	  fsm_for_input2_processing(); // INCREASE MODE
+	  fsm_for_input3_processing(); // DECREASE MODE
+	  fsm_for_input4_processing(); // RUN/RESET MODE
+    /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
@@ -224,21 +227,21 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3
                           |GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7
                           |GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11
-                          |GPIO_PIN_12, GPIO_PIN_RESET);
+                          |GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13
                           |GPIO_PIN_14|GPIO_PIN_15|GPIO_PIN_4|GPIO_PIN_5
-                          |GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_9, GPIO_PIN_RESET);
+                          |GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : PA0 PA1 PA2 PA3
                            PA4 PA5 PA6 PA7
                            PA8 PA9 PA10 PA11
-                           PA12 */
+                           PA12 PA13 PA14 PA15 */
   GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3
                           |GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7
                           |GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11
-                          |GPIO_PIN_12;
+                          |GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -252,10 +255,10 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pins : PB10 PB11 PB12 PB13
                            PB14 PB15 PB4 PB5
-                           PB6 PB7 PB9 */
+                           PB6 PB7 PB8 PB9 */
   GPIO_InitStruct.Pin = GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13
                           |GPIO_PIN_14|GPIO_PIN_15|GPIO_PIN_4|GPIO_PIN_5
-                          |GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_9;
+                          |GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

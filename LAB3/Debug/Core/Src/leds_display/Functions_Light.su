@@ -1,0 +1,7 @@
+Functions_Light.c:36:6:update_buffer_traffic_7seg_leds	16	static
+Functions_Light.c:41:6:Washing_Light_Init	16	static
+Functions_Light.c:45:6:Traffic_Light_Update	4	static
+Functions_Light.c:115:6:Washing_Update	8	static
+Functions_Light.c:179:6:Washing_Light_Update	8	static
+Functions_Light.c:246:6:Run	16	static
+Functions_Light.c:264:6:Reset	4	static

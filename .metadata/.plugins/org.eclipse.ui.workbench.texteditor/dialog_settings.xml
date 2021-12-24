@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="GREEN_DURATION"/>
+		<item key="selection" value="PIN"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="PIN"/>
+			<item value="GREEN2"/>
+			<item value="AMBER2"/>
+			<item value="RED2"/>
+			<item value="90"/>
+			<item value="GREEN1"/>
+			<item value="AMBER1"/>
+			<item value="update_buffer_traffic_7seg_leds"/>
+			<item value="update_mode"/>
+			<item value="mode"/>
 			<item value="GREEN_DURATION"/>
 			<item value="AMBER_DURATION"/>
 			<item value="RED_DURATION"/>
 			<item value="button_index"/>
 			<item value="tempData"/>
-			<item value="sevenSegment"/>
-			<item value="buttonState"/>
-			<item value="buttonState2"/>
-			<item value="SEVEN_SEGMENT_1"/>
-			<item value="GREEN1"/>
-			<item value="AMBER1"/>
-			<item value="RED1"/>
-			<item value="1"/>
-			<item value="YELLOW"/>
-			<item value="GPIOB"/>
 		</list>
 		<list key="replacehistory">
+			<item value="PORT"/>
+			<item value="L30"/>
+			<item value="L60"/>
+			<item value="L"/>
+			<item value="90"/>
+			<item value="QUICK"/>
+			<item value="NORMAL"/>
+			<item value="update_setting"/>
+			<item value="setting"/>
 			<item value="greenDuration"/>
 			<item value="amberDuration"/>
 			<item value="redDuration"/>
 			<item value="number"/>
 			<item value="tempModeData"/>
 			<item value="modeSevenSegment"/>
-			<item value="buttonState4"/>
-			<item value="buttonState3"/>
-			<item value="buttonState2"/>
-			<item value="EDGE"/>
-			<item value="GREEN2"/>
-			<item value="AMBER2"/>
-			<item value="RED2"/>
-			<item value="AMBER"/>
-			<item value="A"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

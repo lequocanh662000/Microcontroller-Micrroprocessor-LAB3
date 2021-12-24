@@ -1,0 +1,84 @@
+/*
+ * Traffic_Light.h
+ *
+ *  Created on: Oct 19, 2021
+ *      Author: Dell
+ */
+
+#ifndef INC_LEDS_DISPLAY_FUNCTIONS_LIGHT_H_
+#define INC_LEDS_DISPLAY_FUNCTIONS_LIGHT_H_
+
+typedef enum {RED,GREEN,AMBER} eLightState;
+//
+typedef enum {READY, FILL_WATER, HEAT_WATER, WASH, RINSE, SPIN} wState;
+#define TIME_CYCLE			10	//remember to precheck timer
+
+#define SOAK_PIN			GPIO_PIN_7
+#define SOAK_PORT			GPIOA
+#define NORMAL_PIN			GPIO_PIN_8
+#define NORMAL_PORT			GPIOA
+#define QUICK_PIN			GPIO_PIN_9
+#define QUICK_PORT			GPIOA
+
+#define L90_PIN				GPIO_PIN_10
+#define L90_PORT			GPIOA
+#define L60_PIN				GPIO_PIN_11
+#define L60_PORT			GPIOA
+#define L30_PIN				GPIO_PIN_12
+#define L30_PORT			GPIOA
+
+#define HOT_PIN				GPIO_PIN_13
+#define HOT_PORT			GPIOA
+#define WARM_PIN			GPIO_PIN_14
+#define WARM_PORT			GPIOA
+#define COLD_PIN			GPIO_PIN_15
+#define COLD_PORT			GPIOA
+//
+static uint16_t sevenSegmentDataPin[9] = {
+		SOAK_PIN, NORMAL_PIN, QUICK_PIN,
+		L90_PIN, L60_PIN, L30_PIN,
+		HOT_PIN, WARM_PIN, COLD_PIN
+};
+
+static GPIO_TypeDef * sevenSegmentDataPort[8] = {
+		SEVEN_SEGMENT_1_A_PORT, SEVEN_SEGMENT_1_B_PORT,
+		SEVEN_SEGMENT_1_C_PORT, SEVEN_SEGMENT_1_D_PORT,
+		SEVEN_SEGMENT_1_E_PORT, SEVEN_SEGMENT_1_F_PORT,
+		SEVEN_SEGMENT_1_G_PORT, SEVEN_SEGMENT_1_H_PORT
+};
+//#define RED_DURATION		50 	//500ms
+//#define	GREEN_DURATION		30	//300ms
+//#define AMBER_DURATION 		20 	//200ms
+
+//Washing mode
+#define SOAK_DURATION		50 	//500ms
+#define	NORMAL_DURATION		30	//300ms
+#define QUICK_DURATION 		20 	//200ms
+//Water level
+#define L90_DURATION		90 	//900ms
+#define	L60_DURATION		60	//600ms
+#define L30_DURATION 		30 	//300ms
+//Temperature level
+#define HOT_DURATION		50 	//500ms
+#define	WARM_DURATION		30	//300ms
+#define COOL_DURATION 		20 	//200ms
+//Rinse
+#define RINSE_DURATION 		30 	//300ms
+//Spin
+#define	SPIN_DURATION		30  //300ms
+//
+
+
+void Traffic_Light_Init(eLightState State);
+void Traffic_Light_Update(void);
+//
+void  Washing_Light_Init(wState State);
+void  Washing_Light_Update(void);
+
+void Traffic_set_mode(uint16_t red, uint16_t amber, uint16_t green);
+//STATE LED
+void update_buffer_traffic_7seg_leds(uint8_t lane1, uint8_t lane2);
+
+void Run(uint16_t washing_mode, uint16_t water_level, uint16_t temperature_level);
+void Reset(void);
+#endif /* INC_LEDS_DISPLAY_FUNCTIONS_LIGHT_H_ */

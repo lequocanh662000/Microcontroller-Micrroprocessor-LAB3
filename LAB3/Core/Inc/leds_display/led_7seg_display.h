@@ -8,12 +8,12 @@
 #include "main.h"
 #ifndef INC_LEDS_DISPLAY_LED_7SEG_DISPLAY_H_
 #define INC_LEDS_DISPLAY_LED_7SEG_DISPLAY_H_
-
+// 2 separate 7seg_leds
 #define ENABLE_7SEG_1				GPIO_PIN_4
 #define ENABLE_7SEG_1_PORT			GPIOB
 #define ENABLE_7SEG_2				GPIO_PIN_5
 #define ENABLE_7SEG_2_PORT			GPIOB
-
+// for pair 7seg_led
 #define ENABLE_7SEG_01				GPIO_PIN_6
 #define ENABLE_7SEG_01_PORT			GPIOB
 #define ENABLE_7SEG_02				GPIO_PIN_7
@@ -40,7 +40,9 @@
 #define SEVEN_SEGMENT_1_G_PORT 		GPIOA
 #define SEVEN_SEGMENT_1_H
 #define SEVEN_SEGMENT_1_H_PORT
-
+//fault led
+#define FAULT_LED			GPIO_PIN_8
+#define FAULT_LED_PORT		GPIOB
 // extra led for mode display
 #define EDGE_A	 			GPIO_PIN_9
 #define EDGE_A_PORT 		GPIOB
@@ -63,5 +65,6 @@ void seven_segment_led_driver(void);
 void update_mode_seven_segment_led_buffer(uint8_t value1, uint8_t value2);
 void mode_seven_segment_led_driver(void);
 void update_mode_led(uint8_t number);
+void Reset_Set_Funtion(void);
 
 #endif /* INC_LEDS_DISPLAY_LED_7SEG_DISPLAY_H_ */

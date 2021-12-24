@@ -1,5 +1,6 @@
 #include <button/input_reading.h>
 #include <leds_display/led_7seg_display.h>
+#include <fault_control/fault_control.h>
 #include "main.h"
 
 #define NUMBER_OF_BUTTONS				4
@@ -39,14 +40,14 @@ void reading_button(void){
 		if(debounceButtonBuffer1[i] == debounceButtonBuffer2[i]){
 			buttonBuffer[i] = debounceButtonBuffer1[i];
 
-			if(buttonBuffer[i] == BUTTON_IS_PRESSED){
+			if(buttonBuffer[i] == BUTTON_IS_PRESSED){ // button is triggered
 				if(counterForButtonPress1s[i] == 0)update_mode_led(i);
 
 				if(counterForButtonPress1s[i] < DURATION_OF_AUTO_INCREASING){
 					counterForButtonPress1s[i]++;
 				}else{
 					flagForButtonPress1s[i] = 1;
-					//to do
+					//Show on the screen the guide that how to use corresponding mode
 				}
 			}else{
 				counterForButtonPress1s[i] = 0;

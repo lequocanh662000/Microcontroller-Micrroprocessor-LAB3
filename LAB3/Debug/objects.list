@@ -1,6 +1,7 @@
 "./Core/Src/button/input_processing.o"
 "./Core/Src/button/input_reading.o"
-"./Core/Src/leds_display/Traffic_Light.o"
+"./Core/Src/fault_control/fault_control.o"
+"./Core/Src/leds_display/Functions_Light.o"
 "./Core/Src/leds_display/led_7seg_display.o"
 "./Core/Src/main.o"
 "./Core/Src/stm32f1xx_hal_msp.o"

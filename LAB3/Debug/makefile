@@ -13,6 +13,7 @@ RM := rm -rf
 -include Core/Startup/subdir.mk
 -include Core/Src/timer/subdir.mk
 -include Core/Src/leds_display/subdir.mk
+-include Core/Src/fault_control/subdir.mk
 -include Core/Src/button/subdir.mk
 -include Core/Src/subdir.mk
 -include subdir.mk
